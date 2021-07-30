@@ -17,24 +17,35 @@ class App extends Component {
       })
     }, 1500)
   }
+
+
+
   getDensState() {
+    console.log()
     return new Array(9).fill({}).map(() => {
       return { 
         isMoleVisible: [true,false][Math.round(Math.random())] 
       }
     })
   }
-  onMoleWhacked() {
+  onMoleWhacked = ()=> {
     this.setState({
       points: this.state.points + 1
     })
   }
   render() {
+    console.log(this);
     const dens = this.state.dens.map((den, index) => {
       return (
-        <Mole key={`mole-${index}`} />
+        <Mole visible = {this.state.dens[index].isMoleVisible} propTwo = {this.onMoleWhacked} key={`mole-${index}`} />
+
       )
     })
+    
+    ///////////////
+    //console.log(this.state.dens[0].isMoleVisible)
+    ///////////////
+
     return (
       <div className="App">
         <h1>WHACK-A-MOLE!</h1>
